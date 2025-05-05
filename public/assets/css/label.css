@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+body {
+  line-height: 1.5rem;
+}
+.bill_title {
+  display: flex;
+  justify-content: space-between;
+}
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.bill {
+  border: 2px solid black;
+  padding: 1rem;
+  width: 60%;
+  margin: 2rem;
+}
+.action {
+  width: 40%;
+}
+.bill_bar {
+  width: 40%;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.bill_from {
+  margin-bottom: 1.5rem;
+}
+.content_table {
+  margin-top: 2rem;
+}
+.tbody th {
+  background-color: lightgray;
+  padding: 0.5rem;
+}
+td {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.footer th {
+  background-color: lightgray;
+  padding: 0.5rem;
+}
+.content_footer {
+  margin-top: 1rem;
+}
+.des {
+  font-weight: 600;
+}
+
+/*bill 2*/
+
+.bill_2 {
+  width: 60%;
+  border: 1px solid black;
+  margin: 2rem;
+}
+.bill_2_title {
+  display: flex;
+  justify-content: space-between;
+}
+.loc {
+  width: 60%;
+  border: 1px solid black;
+}
+.logo {
+  width: 40%;
+  border: 1px solid black;
+  text-align: center;
+}
+.logo img {
+  width: 50%;
+  padding: 0.5rem;
+}
+.loc_title {
+  border: 1px solid black;
+}
+.loc_title p {
+  padding: 1rem 0.5rem;
+  font-weight: 600;
+  font-size: 2rem;
+}
+.bill_2_content {
+  display: flex;
+}
+.deliver_from {
+  width: 40%;
+  padding-left: 0.7rem;
+}
+.deliver_to {
+  border-right: 1px solid black;
+  width: 60%;
+  padding: 0.5rem;
+}
+.footer_item1 {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+.footer_item1 th {
+  text-align: start;
+}
+.footer_item1 td {
+  text-align: start;
+}
+.footer_item1 th,
+td {
+  border-bottom: 1px solid black;
+}
+.footer_item1 th,
+td {
+  padding: 0.5rem;
+  border-right: 1px solid black;
+}
+.tfooters th,
+td {
+  padding: 0.5rem;
+  border-right: 1px solid black;
+}
+.footer_item1 table,
+.tfooters table {
+  border-spacing: 0 !important;
+}
+.tfooters th {
+  text-align: end;
+}
+.tfooters th:first-child {
+  width: 60%;
+}
+.tfooters th:last-child {
+  width: 24%;
+}
+.retunNote {
+  border: 1px solid black;
+  padding: 0.5rem;
+}
+.retunNote p:first-child {
+  font-weight: 600;
+}
+
+/*
+3 bill*/
+
+.bili_3 {
+  width: 60%;
+  border: 1px solid black;
+  margin: 2rem;
+}
+.bili_3 th{
+    border: 1px solid black;
+    padding: 1rem;
+}
+.bili_3  table {
+    border-spacing: 0 !important;
+  }
+
+  .bili_3  th {
+    text-align: start;
+  }
+  
+.mainHead th{
+    text-align: center;
+}
+.mainHead th:first-child{
+   font-size: 2rem;
+}
+
+.codebarss img{
+    width: 30%;
+    
+}
+.billl_footer{
+    text-align: start;
+}
+.codebarss{text-align: center !important;}
+
+/*four billl*/
+
+.blue_dart {
+    width: 60%;
+    border: 1px solid black;
+    margin: 2rem;
+  }
+  .blue_dart th,td{
+    text-align: start;
+    border-right: 1px solid black;
+    padding: .5rem;
+    border-bottom: 1px solid black;
+  }
+  .blue_dart   table {
+    border-spacing: 0 !important;
+  }
+  .t_foot th{
+    text-align: end !important;
+  }
+  #blue_dart{
+    width: 30%;
+  }
+  #blue_dart img{
+    width: 100%;
+  }
+  #bar_code th{text-align: center !important;}
+  #bar_code  img{width: 40%;}
+
+  .delive {
+    display: flex;
+    justify-content: space-between;
+  }

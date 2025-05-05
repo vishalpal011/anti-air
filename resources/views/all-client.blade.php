@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr"
+    data-theme="theme-default" data-assets-path="assets/" data-template="vertical-menu-template">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Dashboard - Analytics | Vuexy - Bootstrap Admin Template</title>
+
+
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 5" />
+    <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
+        integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @include('layouts.links')
+
+
+</head>
+<style>
+    .custom-option-icon .custom-option-content {
+        text-align: center;
+        padding: 6px;
+    }
+</style>
+
+<body>
+
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar  ">
+        <div class="layout-container">
+
+            <!-- Menu -->
+            @include('layouts.sidebar')
+            <!-- / Menu -->
+
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                @include('layouts.header')
+                <!-- / Navbar -->
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+
+                        <h5 class="py-3 mb-2">
+                            <span class="text-muted fw-light">Client /</span>All Client
+                        </h5>
+
+                        <!-- Order List Widget -->
+
+                        <div class="card mb-4">
+                            <div class="card-widget-separator-wrapper">
+                                <div class="card-body card-widget-separator">
+                                    <div class="row gy-4 gy-sm-1">
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div
+                                                class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
+                                                <div>
+                                                    <h4 class="mb-2">{{ $deactive }}</h4>
+                                                    <p class="mb-0 fw-medium">Deactive Clients</p>
+                                                </div>
+                                                <span class="avatar me-sm-4">
+                                                    <span class="avatar-initial bg-label-secondary rounded">
+                                                        <i class="ti-md ti ti-calendar-stats text-body"></i>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <hr class="d-none d-sm-block d-lg-none me-4">
+                                        </div>
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div
+                                                class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
+                                                <div>
+                                                    <h4 class="mb-2">{{ $active }}</h4>
+                                                    <p class="mb-0 fw-medium">Active Clients</p>
+                                                </div>
+                                                <span class="avatar p-2 me-lg-4">
+                                                    <span class="avatar-initial bg-label-secondary rounded"><i
+                                                            class="ti-md ti ti-checks text-body"></i></span>
+                                                </span>
+                                            </div>
+                                            <hr class="d-none d-sm-block d-lg-none">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order List Table -->
+                            <div class="card p-3 pt-4">
+                                <div class="card-datatable table-responsive">
+
+                                    <!-- filter section -->
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Date : From</label>
+                                            <input type="date" id="filterFrom" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="">Date : To</label>
+                                            <input type="date" id="filterTo" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Latest/Oldest</label>
+                                            <select id="latest_oldest" class="form-control">
+                                                <option value="" selected>--Choose--</option>
+                                                <option value="DESC">Latest</option>
+                                                <option value="ASC">Oldest</option>
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-3">
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>business Type</label>
+                                            <select id="business_type" class="form-control">
+                                                <option value="" selected>--Choose--</option>
+                                                <option value="Personal">Personal</option>
+                                                <option value="Company">Company</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Client Type</label>
+                                            <select id="client_type" class="form-control">
+                                                <option value="" selected>--Choose--</option>
+                                                <option value="B2B">B2B </option>
+                                                <option value="B2C">B2C </option>
+                                                <option value="International">International</option>
+                                                <option value="Retail">Retail</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <br>
+                                            <button type="button" onclick="Datafilter()"
+                                                class="btn btn-primary">Filter</button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <!-- filter section end -->
+
+                                    <table id="example" class="display nowrap" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Client Id</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Company Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Business Type</th>
+                                                <th>Client Type</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                                <th>Transaction Logs</th>
+                                                <th>Current Balance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $count = 1;
+                                            @endphp
+                                            @foreach ($data as $value)
+                                                <tr id="row{{ $value->id }}">
+
+                                                    <td>{{ $count }}</td>
+                                                    <td>{{ $value->client_id }}</td>
+                                                    <td>{{ $value->first_name }}</td>
+                                                    <td>{{ $value->last_name }}</td>
+                                                    <td>{{ $value->company_name }}</td>
+                                                    <td>{{ $value->email }}</td>
+                                                    <td>{{ $value->phone }}</td>
+                                                    <td>{{ $value->business_type }}</td>
+                                                    <td>{{ $value->B2B }}</td>
+
+                                                    <td>
+                                                        @if ($value->status == 'true')
+                                                            <span class="badge bg-success">Active</span>
+                                                        @else
+                                                            <span class="badge bg-danger">Deactive</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a
+                                                            href="{{ url('view-client-details') }}/{{ $value->id }}">
+                                                            <i class='menu-icon tf-icons ti ti-eye'></i>
+                                                        </a>
+                                                        &nbsp;
+                                                        <span data-bs-toggle="modal"
+                                                            data-bs-target="#deleteFunction{{ $value->id }}"><i
+                                                                class='menu-icon tf-icons ti ti-trash'></i></span>
+
+
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ url('transaction-log') }}/{{ $value->id }}"><i
+                                                                class="fa fa-exchange" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        @if ($value->wallet_balance === null)
+                                                            <i class="fa fa-inr" aria-hidden="true"></i> 0
+                                                        @else
+                                                            <i class="fa fa-inr" aria-hidden="true"></i>
+                                                            {{ $value->wallet_balance }}
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+                                                <div class="modal modal-top fade"
+                                                    id="deleteFunction{{ $value->id }}" tabindex="-1"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document" style="width: 387px">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <h5 class="text-center" style="margin-top: 16px;">Are
+                                                                    You Want to Delete This Record ?</h5>
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-bs-dismiss="modal"
+                                                                    style="    margin-left: 106px;">No</button>
+                                                                <button type="button"
+                                                                    onclick="data_delete({{ $value->id }})"
+                                                                    class="btn btn-success"
+                                                                    data-bs-dismiss="modal">Yes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                @php
+                                                    $count++;
+                                                @endphp
+                                            @endforeach
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- / Content -->
+
+                        <!-- Footer -->
+
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                document.getElementById('aws').addEventListener('submit', function(e) {
+                                    e.preventDefault();
+
+                                    var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+                                    var formData = new FormData(this);
+
+
+                                    fetch("{{ url('create-pin-code') }}", {
+                                            method: "POST",
+                                            body: formData,
+                                            headers: {
+                                                'X-CSRF-TOKEN': csrfToken,
+                                            },
+                                        })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.status === 'success') {
+
+                                                toastr.options = {
+                                                    "closeButton": true,
+                                                    "progressBar": true,
+                                                    "timeOut": 15000
+                                                };
+                                                toastr.success(data.message);
+                                                setTimeout(function() {
+
+                                                    window.location.href = '{{ url('Pin-Code') }}';
+                                                }, 2000);
+                                            } else {
+                                                toastr.options = {
+                                                    "closeButton": true,
+                                                    "progressBar": true,
+                                                    "timeOut": 15000
+                                                };
+                                                toastr.warning(data.message);
+                                                setTimeout(function() {
+
+                                                    // window.location.href='{{ url('') }}';
+                                                }, 4000);
+                                            }
+                                        })
+
+
+                                });
+                            });
+                        </script>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                document.getElementById('update').addEventListener('submit', function(e) {
+                                    e.preventDefault();
+
+                                    var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+                                    var formData = new FormData(this);
+
+
+                                    fetch("{{ url('update-pin-code') }}", {
+                                            method: "POST",
+                                            body: formData,
+                                            headers: {
+                                                'X-CSRF-TOKEN': csrfToken,
+                                            },
+                                        })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.status === 'success')
+                                            {
+
+                                                toastr.options = {
+                                                    "closeButton": true,
+                                                    "progressBar": true,
+                                                    "timeOut": 15000
+                                                };
+                                                toastr.success(data.message);
+                                                setTimeout(function() {
+
+                                                    window.location.href = '{{ url('Pin-Code') }}';
+                                                }, 2500);
+
+                                            } else {
+                                                toastr.options = {
+                                                    "closeButton": true,
+
+
+                                                };
+                                                toastr.warning(data.message);
+                                                setTimeout(function() {
+
+                                                    // window.location.href='{{ url('') }}';
+                                                }, 4000);
+                                            }
+                                        })
+
+
+                                });
+                            });
+                        </script>
+
+
+                        <!-- data delete ajax -->
+                        <script>
+                            function data_delete(id) {
+                                $.ajax({
+                                    url: '{{ url('delete-client') }}',
+                                    type: 'post',
+                                    data: {
+                                        id: id,
+                                        _token: '{{ csrf_token() }}'
+                                    },
+                                    success: function(result) {
+                                        toastr.options = {
+                                            "closeButton": true,
+                                            "progressBar": true,
+                                            "timeOut": 15000
+                                        };
+                                        toastr.success(result);
+                                        jQuery('#row' + id).hide('slow');
+                                    }
+                                });
+                            }
+                        </script>
+
+
+
+                        <!-- data filter -->
+                        <script>
+                            function Datafilter() {
+                                var from = $('#filterFrom').val();
+                                var to = $('#filterTo').val();
+                                var latest_oldest = $('#latest_oldest').val();
+                                var business_type = $('#business_type').val();
+                                var client_type = $('#client_type').val();
+
+                                $.ajax({
+                                    url: '{{ url('client-data-filter') }}',
+                                    type: 'POST',
+                                    data: {
+                                        from: from,
+                                        to: to,
+                                        latest_oldest: latest_oldest,
+                                        business_type: business_type,
+                                        client_type: client_type,
+                                        _token: '{{ csrf_token() }}'
+                                    },
+                                    success: function(result) {
+                                        if (result == '') {
+                                            toastr.options = {
+                                                "closeButton": true,
+                                                "progressBar": true,
+                                                "timeOut": 15000
+                                            };
+                                            toastr.info('Data Not Found');
+                                        } else {
+                                            // remove old data rows
+                                            $("table#example tbody").empty();
+
+                                            $.each(result, function(key, value) {
+                                                if (value.status == 'true') {
+                                                    status = '<span class="badge bg-success">Active</span>';
+                                                } else {
+                                                    status = '<span class="badge bg-danger">Deactive</span>';
+                                                }
+
+                                                var viewButton = '<a href="{{ url('view-client-details') }}/' + value.id +
+                                                    '"> <i class="menu-icon tf-icons ti ti-eye"></i> </a>';
+
+                                                var deleteButton =
+                                                    '<span data-bs-toggle="modal" data-bs-target="#deleteFunction' + value
+                                                    .id + '"><i class="menu-icon tf-icons ti ti-trash"></i></span>';
+
+                                                //  after get data put on table
+                                                $("table#example").append("<tr id='row" + value.id + "'><td>" + value.id +
+                                                    "</td><td>" + value.client_id + "</td><td>" + value.first_name +
+                                                    "</td><td>" + value.last_name + "</td><td>" + value.company_name +
+                                                    "</td><td>" + value.email + "</td><td>" + value.phone +
+                                                    "</td><td>" + value.business_type + "</td><td>" + value.B2B +
+                                                    "</td><td>" + status + "</td><td>" + viewButton + deleteButton +
+                                                    "</td> </tr>");
+                                            });
+                                        }
+
+                                    }
+                                });
+                            }
+                        </script>
+
+                        @include('layouts.footer')

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr"
+    data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Dashboard - Analytics | Vuexy - Bootstrap Admin Template</title>
+
+
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 5" />
+    <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+
+    @include('layouts.links')
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
+        integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Helpers -->
+    <script src="../../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="../../assets/vendor/js/template-customizer.js"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    {{-- <script src="../../assets/js/config.js"></script> --}}
+</head>
+<style>
+    .custom-option-icon .custom-option-content {
+        text-align: center;
+        padding: 6px;
+    }
+
+    .limited-paragraph {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 300px;
+        /* Adjust the maximum width as needed */
+    }
+</style>
+
+<body>
+
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar  ">
+        <div class="layout-container">
+
+            <!-- Menu -->
+            @include('layouts.sidebar')
+            <!-- / Menu -->
+
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                @include('layouts.header')
+                <!-- / Navbar -->
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+
+                        <h4 class="py-3 mb-2">
+                            <span class="text-muted fw-light">Location /</span> Service Center
+                        </h4>
+
+                        <!-- Order List Widget -->
+
+                        <div class="card mb-4">
+                            <div class="card-widget-separator-wrapper">
+                                <div class="card-body card-widget-separator">
+                                    <div class="row gy-4 gy-sm-1">
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div
+                                                class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
+                                                <div>
+                                                    <h4 class="mb-2">{{ $deactive }}</h4>
+                                                    <p class="mb-0 fw-medium">Deactive City</p>
+                                                </div>
+                                                <span class="avatar me-sm-4">
+                                                    <span class="avatar-initial bg-label-secondary rounded">
+                                                        <i class="ti-md ti ti-calendar-stats text-body"></i>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <hr class="d-none d-sm-block d-lg-none me-4">
+                                        </div>
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div
+                                                class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
+                                                <div>
+                                                    <h4 class="mb-2">{{ $active }}</h4>
+                                                    <p class="mb-0 fw-medium">Active City</p>
+                                                </div>
+                                                <span class="avatar p-2 me-lg-4">
+                                                    <span class="avatar-initial bg-label-secondary rounded"><i
+                                                            class="ti-md ti ti-checks text-body"></i></span>
+                                                </span>
+                                            </div>
+                                            <hr class="d-none d-sm-block d-lg-none">
+                                        </div>
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div
+                                                class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
+                                                <div>
+                                                    <h4 class="mb-2"> </h4>
+                                                    <p class="mb-0 fw-medium">
+                                                        <button type="button" class="btn btn-sm btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#largeModal"><i
+                                                                class='menu-icon tf-icons ti ti-location'></i>Add New
+                                                        </button>
+                                                    </p>
+                                                    <div class="modal fade" id="largeModal" tabindex="-1"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel3">Add
+                                                                        New Service Center</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <form id="aws" method="post">
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="service_code"
+                                                                                    placeholder="Service Code" required>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="service_name"
+                                                                                    placeholder="Service Name" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row pt-3">
+                                                                            <div class="col-md-6">
+                                                                                 <label for="">Pin code</label>
+                                                                                 <input type="text"  id="pincode" name="pincode" class="form-control" placeholder="Enter Pin code" required>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label for="">City</label>
+                                                                                <input type="text" name="city_name" class="form-control" placeholder="City Name" id="city" required>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label for="">State</label>
+                                                                                <input type="text" name="state" class="form-control" placeholder="State Name" id="state" required>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label for="">Region</label>
+                                                                                <input type="text" name="region" class="form-control" placeholder="City Name" id="regions" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row pt-3">
+                                                                            <div class="col-md-12">
+                                                                            <label for="">Service Addess</label>
+                                                                                <textarea name="center_address" id="" cols="30" rows="4" class="form-control"
+                                                                                    placeholder="Service Center Address" required></textarea>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-label-secondary"
+                                                                            data-bs-dismiss="modal">Close</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Upload</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order List Table -->
+                        <div class="card p-3">
+                            <div class="card-datatable table-responsive">
+                                <!-- filter section -->
+                                <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Date : From</label>
+                                            <input type="date" id="filterFrom" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="">Date : To</label>
+                                            <input type="date" id="filterTo" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Latest/Oldest</label>
+                                            <select id="latest_oldest" class="form-control">
+                                                <option value="" selected>--Choose--</option>
+                                                <option value="DESC">Latest</option>
+                                                <option value="ASC">Oldest</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <br>
+                                            <button type="button" onclick="Datafilter()" class="btn btn-primary">Filter</button>
+                                        </div>
+                                    </div>
+                                    <br>
+                               <!-- filter section end -->
+
+                                <table id="example" class="display nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No.</th>
+                                            <th>Service Code</th>
+                                            <th>Service Name</th>
+                                            <th>Pin Code</th>
+                                            <th>City Name</th>
+                                            <th>State</th>
+                                            <th>Region</th>
+                                            <th>Center Address</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $count = 1;
+                                        @endphp
+                                        @foreach ($data as $value)
+                                            <tr id="row{{ $value->id }}">
+
+                                                <td>{{ $count }}</td>
+                                                <td>{{ $value->service_code }}</td>
+                                                <td>{{ $value->service_name }}</td>
+                                                <td>{{ $value->pin_code }}</td>
+                                                <td>{{ $value->city_name }}</td>
+                                                <td>{{ $value->state }}</td>
+                                                <td>{{ $value->region }}</td>
+                                                <td class="limited-paragraph">{{ $value->center_address }}</td>
+                                                <td>
+                                                    @if ($value->status == 'true')
+                                                        <span class="badge bg-success">Active</span>
+                                                    @else
+                                                        <span class="badge bg-danger">Deactive</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a data-bs-toggle="modal"
+                                                        data-bs-target="#largeModals{{ $value->id }}">
+                                                        <i class='menu-icon tf-icons ti ti-edit'></i>
+                                                    </a>
+                                                    &nbsp;
+
+                                                    <a href="#" onclick="deleteModal({{ $value->id }})">
+                                                        <i class='menu-icon tf-icons ti ti-trash'></i>
+                                                    </a>
+
+                                                    
+                                                </td>
+                                            </tr>
+                                            <div class="modal fade" id="largeModals{{ $value->id }}"
+                                                tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel3">Edit
+                                                                Service Center</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <form action="{{url('update-service-center')}}" method="post">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <input type="text" class="form-control"
+                                                                            name="service_code"
+                                                                            placeholder="Service Code"
+                                                                            value="{{ $value->service_code }}">
+                                                                        <input type="text" hidden name="id"
+                                                                            value="{{ $value->id }}">
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <input type="text" class="form-control"
+                                                                            name="service_name"
+                                                                            placeholder="Service Name"
+                                                                            value="{{ $value->service_name }}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row pt-3">
+                                                                    <div class="col-md-6">
+                                                                        <label for="">Pin code</label>
+                                                                        <input type="text"  id="pincode" name="pincode" class="form-control" placeholder="Enter Pin code"  value="{{ $value->pin_code }}">
+                                                                   </div>
+                                                                   <div class="col-md-6">
+                                                                       <label for="">City</label>
+                                                                       <input type="text" name="city_name" class="form-control" placeholder="City Name" id="city" value="{{ $value->city_name }}">
+                                                                   </div>
+                                                                   <div class="col-md-6">
+                                                                       <label for="">State</label>
+                                                                       <input type="text" name="state" class="form-control" placeholder="State Name" id="state" value="{{ $value->state }}">
+                                                                   </div>
+                                                                   <div class="col-md-6">
+                                                                       <label for="">Region</label>
+                                                                       <input type="text" name="region" class="form-control" placeholder="City Name" id="regions" value="{{ $value->region }}">
+                                                                   </div>
+                                                                </div>
+                                                                <div class="row pt-3">
+                                                                    <div class="col-md-12">
+                                                                    <label for="">Service Address</label>
+                                                                        <textarea name="center_address" id="" cols="30" rows="4" class="form-control"
+                                                                            placeholder="Your Placeholder Text">
+                                                                        {{ $value->center_address }}
+                                                                    </textarea>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row pt-3">
+                                                                    <div class="col-md-12">
+                                                                    <label for="">Status</label>
+                                                                        <select name="status" class="form-control"
+                                                                            id="">
+
+                                                                            <option value="{{ $value->status }}" selected>
+                                                                                @if($value->status == 'true')
+                                                                                Active (Selected)
+                                                                                @else
+                                                                                Deactive (Selected)
+                                                                                @endif
+                                                                            </option>
+
+                                                                            <option value="true">Active</option>
+                                                                            <option value="false">Deactive</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-label-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Upload</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @php
+                                                $count++;
+                                            @endphp
+                                        @endforeach
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                        <!-- delete modal -->
+                        <div class="modal modal-top fade" id="deleteModal" tabindex="-1"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document" style="width: 387px">
+                                                    <div class="modal-content">
+                                                            <div class="modal-body">
+                                                               
+                                                                 <h5 class="text-center" style="margin-top: 16px;">Are You Want to Delete This Record ?</h5>
+                                                                 <button type="button" class="btn btn-danger"
+                                                                    data-bs-dismiss="modal" style="    margin-left: 106px;">No</button>
+                                                                <button type="button" onclick="data_delete()"
+                                                                    class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                    <!-- / Content -->
+                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+                    <!-- Footer -->
+                    <script>
+                        $(document).ready(function() {
+                            $('#pincode').on('input', function() {
+                                var pincode = $(this).val();
+                                 // Make an AJAX request to get city and state
+                                 $.ajax({
+                                    type: 'POST',
+                                    url: '/get-pincode2',
+                                    data: {
+                                        _token: '{{ csrf_token() }}',
+                                        code: pincode
+                                    },
+                                    success: function(response)
+                                    {
+                                    console.log(response);
+                                        $('#city').val(response.city);
+                                        $('#state').val(response.state);
+                                        $('#regions').val(response.regions);
+                                    },
+                                    error: function(error) {
+                                        console.log('Error:', error);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            document.getElementById('aws').addEventListener('submit', function(e) {
+                                e.preventDefault();
+
+                                var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+                                var formData = new FormData(this);
+
+
+                                fetch("{{ url('create-service-center') }}", {
+                                        method: "POST",
+                                        body: formData,
+                                        headers: {
+                                            'X-CSRF-TOKEN': csrfToken,
+                                        },
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        
+                                        if (data.status === 'success') {
+
+                                            toastr.options = {
+                                                "closeButton": true,
+                                                "progressBar": true,
+                                                "timeOut": 15000
+                                            };
+                                            toastr.success(data.message);
+                                            setTimeout(function() {
+
+                                                window.location.href = '{{ url('Service-Center') }}';
+                                            }, 2000);
+                                        } else {
+                                            toastr.options = {
+                                                "closeButton": true,
+                                                "progressBar": true,
+                                                "timeOut": 15000
+                                            };
+                                            toastr.warning(data.message);
+                                            setTimeout(function() {
+
+                                                // window.location.href='{{ url('') }}';
+                                            }, 4000);
+                                        }
+                                    })
+
+
+                            });
+                        });
+                    </script>
+
+ 
+
+<!-- data delete ajax -->
+<script>
+    function deleteModal(id){
+        var modal = $('#deleteModal');
+        modal.data('id', id);
+        modal.modal('show');
+}
+
+     function data_delete(){
+        var id = $('#deleteModal').data('id');
+            $.ajax({
+                 url: '{{url('delete-service-center')}}',
+                 type: 'post',
+                 data: {
+                    id:id,
+                    _token: '{{csrf_token()}}'
+                 },
+                 success: function(result) {
+                     toastr.options = {
+                      "closeButton": true,
+                      "progressBar": true,
+                      "timeOut": 15000
+                     };
+                    toastr.success(result);
+                    jQuery('#row'+id).hide('slow');
+                 }
+                });
+        }
+</script>
+
+
+   <!-- data filter -->
+   <script>
+    function Datafilter(){
+        var from = $('#filterFrom').val();
+        var to = $('#filterTo').val();
+        var latest_oldest = $('#latest_oldest').val();
+
+        $.ajax({
+            url: '{{ url('servicecenter-data-filter') }}',
+            type: 'POST',
+            data: {
+                from: from,
+                to: to,
+                latest_oldest: latest_oldest,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function (result) {
+                if(result=='')
+                {
+                    toastr.options = {
+                      "closeButton": true,
+                      "progressBar": true,
+                      "timeOut": 15000
+                    };
+                    toastr.info('Data Not Found');
+                }
+                else
+                {
+                // remove old data rows
+                $("table#example tbody").empty();
+
+                $.each(result, function (key, value) {
+                    if (value.status == 'true') {
+                        status = '<span class="badge bg-success">Active</span>';
+                    }  else {
+                        status = '<span class="badge bg-danger">Deactive</span>';
+                    }
+
+                    var editButton = '<span data-bs-toggle="modal" data-bs-target="#largeModals' + value.id + '"><i class="menu-icon tf-icons ti ti-edit"></i></span>';
+
+                   
+                    var deleteButton = '<a href="#" onclick="deleteModal('+ value.id +')"><i  class="menu-icontf-icons ti ti-trash"></i></a>';
+                   
+                    //  after get data put on table   
+                    $("table#example").append("<tr id='row" + value.id + "'><td>" + value.id + "</td><td>" + value.service_code + "</td><td>" + value.service_name + "</td><td>" + value.pincode + "</td><td>" + value.city_name + "</td><td>" + value.state + "</td><td>" + value.region + "</td><td>" + value.center_address + "</td><td>" + status + "</td><td>" + editButton + deleteButton +"</td> </tr>");
+                });
+            }
+            }
+        });
+    }
+</script>
+
+
+                    @include('layouts.footer')
