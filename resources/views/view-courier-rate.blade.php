@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr"
-    data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template">
+    data-theme="theme-default" data-assets-path="assets/" data-template="vertical-menu-template">
 
 <head>
     <meta charset="utf-8" />
@@ -32,12 +32,12 @@ rel="stylesheet"
 href="https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css"
 >
     <!-- Helpers -->
-    <script src="../../assets/vendor/js/helpers.js"></script>
+    <script src="assets/vendor/js/helpers.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-    <script src="../../assets/vendor/js/template-customizer.js"></script>
+    <script src="assets/vendor/js/template-customizer.js"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    {{-- <script src="../../assets/js/config.js"></script> --}}</head>
+    {{-- <script src="assets/js/config.js"></script> --}}</head>
 <style>
     .custom-option-icon .custom-option-content {
         text-align: center;
