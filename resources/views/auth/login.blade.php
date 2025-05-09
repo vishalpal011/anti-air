@@ -144,8 +144,8 @@
           </a>
         </div>
         <!-- /Logo -->
-        <h3 class="mb-1">Welcome to Super Admin! 👋</h3>
-        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+        <h3 class="mb-1">Welcome to My Super Admin Panel 👋</h3>
+         <!-- <p class="mb-4">Please sign-in tos your account and start the adventure</p> -->
         @if(session('success_message'))
         <div class="alert alert-success">
             {{ session('success_message') }}
